@@ -3,6 +3,8 @@ const dbConfig = require('./dbconfig')
 
 console.log(dbConfig)
 
+let phoneNumber = '3571327360'
+
 const query = `
 
             SELECT FECHA,
@@ -31,7 +33,7 @@ const query = `
             round(SERVICIOS_BANCA_FINANCIERAS,2) SERVICIOS_BANCA_FINANCIERAS,
             round(OTROS,2) OTROS
             FROM dracing.C0065_trafico_clientes_pec_ar
-            where radius_calling_station_id = '3571327360'
+            where radius_calling_station_id = ${phoneNumber}
             and fecha >= to_date('01092020','ddmmyyyy')
 `
 

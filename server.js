@@ -14,8 +14,6 @@ app.use(bodyParser.json())
 
 app.get('/', async (req, res) => {
 	let data = await run()
-    console.log(data)
-    console.log(typeof data)
 	res.json(data)
 })
 
