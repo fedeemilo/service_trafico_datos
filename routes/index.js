@@ -1,21 +1,41 @@
 const express = require('express')
 const router = express.Router()
 const getData = require('../db/getData')
+const _ = require('underscore')
+
+let cacheData = {}
 
 // Mostrar todos los datos
 router.get('/', async (req, res) => {
-	let data = await getData()
+	let data = {}
 
-	res.json(data)
+	// Si el cache esta vacío obtengo la data del servidor
+	if (_.isEmpty(cacheData)) {
+		data = await getData()
+		Object.assign(cacheData, JSON.parse(data[1].get('fullData')))
+		res.json(data[0])
+		return
+	}
+
+	res.json(cacheData)
 })
 
 // Filtrar un resultado por nombre
 router.get('/:filtro', async (req, res) => {
 	let name = req.params.filtro.toUpperCase()
-	let data = await getData()
+	let data = {}
 	let idx
 	let filteredData = {}
-	console.log(data)
+
+	console.log(_.isEmpty(cacheData))
+
+	if (_.isEmpty(cacheData)) {
+		data = await getData()
+		Object.assign(cacheData, JSON.parse(data[1].get('fullData')))
+		data = data[0]
+	} else {
+		Object.assign(data, cacheData)
+	}
 
 	for (let prop in data) {
 		if (prop === 'metaData') {
@@ -27,7 +47,8 @@ router.get('/:filtro', async (req, res) => {
 			})
 		} else {
 			data[prop].forEach(arr => {
-				let date = `${arr[0].getDay()}/${arr[0].getMonth()}/${arr[0].getYear()}`
+				let d = new Date(arr[0])
+				let date = `${d.getDay()}/${d.getMonth()}/${d.getFullYear()}`
 				filteredData[`${date}`] = arr[idx]
 			})
 		}
