@@ -4,7 +4,6 @@ const app = express()
 const PORT = process.env.PORT || 4000
 const bodyParser = require('body-parser')
 
-const run = require('./db/select')
 
 // Parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -12,10 +11,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // Parse application/json
 app.use(bodyParser.json())
 
-app.get('/', async (req, res) => {
-	let data = await run()
-	res.json(data)
-})
+app.use(require('./routes/index'))
 
 app.listen(PORT, () => {
 	console.log(`Escuchando el puerto ${PORT}`)

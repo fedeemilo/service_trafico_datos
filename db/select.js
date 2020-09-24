@@ -1,8 +1,6 @@
 const oracledb = require('oracledb')
 const dbConfig = require('./dbconfig')
 
-console.log(dbConfig)
-
 let phoneNumber = '3571327360'
 
 const query = `
@@ -42,7 +40,6 @@ async function run() {
 
 	try {
 		connection = await oracledb.getConnection(dbConfig)
-
         const result = await connection.execute(query)
         return result
 	} catch (err) {
@@ -59,9 +56,3 @@ async function run() {
 }
 
 module.exports = run
-
-// function doRelease(connection) {
-// 	connection.close(function(err) {
-// 		if (err) console.error(err.message)
-// 	})
-// }
