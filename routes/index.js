@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router()
 const getData = require('../db/getData')
-const cache = require('memory-cache')
 
 // Mostrar todos los datos
 router.get('/', async (req, res) => {
@@ -13,7 +12,7 @@ router.get('/', async (req, res) => {
 // Filtrar un resultado por nombre
 router.get('/:filtro', async (req, res) => {
 	let name = req.params.filtro.toUpperCase()
-	let data = await run()
+	let data = await getData()
 	let idx
 	let filteredData = {}
 	console.log(data)

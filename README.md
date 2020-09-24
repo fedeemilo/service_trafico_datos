@@ -1,5 +1,7 @@
 ## Servicio en Node para PEC app
 
+![Texto alternativo](/assets/img/claro.png)
+
 Se disponibilizara un nuevo servicio que recupere la información de  
 trafico de datos del periodo en curso de un cliente.  
 
