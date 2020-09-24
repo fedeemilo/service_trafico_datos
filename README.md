@@ -41,7 +41,7 @@ categoría particular y visualizar el detalle de consumo por dia.
 
 ### Endpoints
 
-- GET toda la data: / (localhost:4000)
+- GET /             ->  obtener todos los datos
 
-- GET data filtrada por categoría: /:filtro (donde filtro es un nombre de categoría)
+- GET /:categoria   ->  obtener datos por fecha de la categoria
 
