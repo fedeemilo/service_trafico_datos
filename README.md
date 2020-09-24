@@ -29,3 +29,17 @@ Se disponibilizara información en el apartado Saldo en uso, acumulado por categ
 También un acceso rápido a un grafico por dia, donde se podría seleccionar una   
 categoría particular y visualizar el detalle de consumo por dia.
 
+### Para probar el servicio:
+
+- git clone https://github.com/fedeemilo/service_trafico_datos.git
+
+- cd service_trafico_datos
+
+- npm install
+
+### Endpoints
+
+- GET toda la data: / (localhost:4000)
+
+- GET data filtrada por categoría: /:filtro (donde filtro es un nombre de categoría)
+

@@ -1,33 +1,11 @@
 const express = require('express')
 const router = express.Router()
-const run = require('../db/select')
-const mcache = require('memory-cache')
-
-let cache = duration => {
-	return (req, res, next) => {
-		let key = '__express__' + req.originalUrl || req.url
-		let cachedBody = mcache.get(key)
-
-		if (cachedBody) {
-			res.send(cachedBody)
-			return
-		} else {
-			res.sendResponse = res.send
-			res.send = body => {
-				mcache.put(key, body, duration * 1000, function(key, value) {      
-                    console.log(value)             
-                    res.json(value)
-                })
-			}
-			next()
-		}
-	}
-}
+const getData = require('../db/getData')
+const cache = require('memory-cache')
 
 // Mostrar todos los datos
-router.get('/', cache(20), async (req, res) => {
-    let data = await run()
-    console.log(mcache)
+router.get('/', async (req, res) => {
+	let data = await getData()
 
 	res.json(data)
 })
