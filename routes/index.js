@@ -22,7 +22,7 @@ router.get('/', async (req, res) => {
 
 // Filtrar un resultado por nombre
 router.get('/:categoria', async (req, res) => {
-	let name = req.params.filtro.toUpperCase()
+	let name = req.params.categoria.toUpperCase()
 	let data = {}
 	let idx
 	let filteredData = {}

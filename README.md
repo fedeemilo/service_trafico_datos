@@ -39,9 +39,15 @@ categoría particular y visualizar el detalle de consumo por dia.
 
 - npm install
 
+- el servicio correrá en http://localhost:4000
+
 ### Endpoints
 
-- GET /             ->  obtener todos los datos
+- GET http://localhost:4000/        ->  obtener todos los datos
 
-- GET /:categoria   ->  obtener datos por fecha de la categoria
+- GET http://localhost/:categoria   ->  obtener datos por fecha de la categoria
 
+```
+Ejemplo:
+localhost:4000/comercio_electronico
+``` 
