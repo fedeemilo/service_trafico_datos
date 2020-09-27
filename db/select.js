@@ -1,7 +1,7 @@
 const oracledb = require('oracledb')
 const dbConfig = require('./dbconfig')
 
-let phoneNumber = '3571327360'
+let phoneNumber = '2944558061'
 
 const query = `
 
