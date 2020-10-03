@@ -1,9 +1,11 @@
 const oracledb = require('oracledb')
 const dbConfig = require('./dbconfig')
 
-let phoneNumber = '2944558061'
+async function run(celPhone) {
+   let connection
+   let phoneAUX = '2944558061'
 
-const query = `
+   let query = `
 
             SELECT FECHA,
             round(sum(CONTENIDO_ADULTO +REDES_SOCIALES +COMERCIO_ELECTRONICO +ENTRETENIMIENTO + SALUD_EDUCACION_BIENESTAR +BUSQUEDAS_MAIL_TECNOLOGIA +NOTICIAS_DIARIOS_REVISTAS+ SERVICIOS_BANCA_FINANCIERAS + OTROS) over (partition by radius_calling_station_id),2) ACUMULADO_PERIODO,
@@ -31,28 +33,27 @@ const query = `
             round(SERVICIOS_BANCA_FINANCIERAS,2) SERVICIOS_BANCA_FINANCIERAS,
             round(OTROS,2) OTROS
             FROM dracing.C0065_trafico_clientes_pec_ar
-            where radius_calling_station_id = ${phoneNumber}
+            where radius_calling_station_id = ${celPhone !== ''
+				? celPhone
+				: phoneAUX}
             and fecha >= to_date('01092020','ddmmyyyy')
 `
 
-async function run() {
-	let connection
-
-	try {
-		connection = await oracledb.getConnection(dbConfig)
-        const result = await connection.execute(query)
-        return result
-	} catch (err) {
-		console.error(err)
-	} finally {
-		if (connection) {
-			try {
-				await connection.close()
-			} catch (err) {
-				console.error(err)
-			}
-		}
-	}
+   try {
+      connection = await oracledb.getConnection(dbConfig)
+      const result = await connection.execute(query)
+      return result
+   } catch (err) {
+      console.error(err)
+   } finally {
+      if (connection) {
+         try {
+            await connection.close()
+         } catch (err) {
+            console.error(err)
+         }
+      }
+   }
 }
 
 module.exports = run
