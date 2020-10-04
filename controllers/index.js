@@ -9,7 +9,7 @@ module.exports = {
 
 		// Si el cache esta vacío obtengo la data del servidor
 		if (_.isEmpty(cacheData)) {
-			data = await getData()
+			data = await getData('')
 			Object.assign(cacheData, JSON.parse(data[1].get('fullData')))
 			res.json(data[0])
 			return
@@ -26,7 +26,7 @@ module.exports = {
 		let idx
 
 		if (_.isEmpty(cacheData)) {
-			data = await getData()
+			data = await getData('')
 			Object.assign(cacheData, JSON.parse(data[1].get('fullData')))
 			data = data[0]
 		} else {
@@ -52,5 +52,16 @@ module.exports = {
 		res.json(filteredData)
 	},
 
+<<<<<<< HEAD
 	async getDataByCelPhone(req, res, next) {},
+=======
+	async getDataByCelPhone(req, res, next) {
+		let data = {}
+		let celPhone = req.params.numerocel
+
+		data = await getData(celPhone)
+		Object.assign(cacheData, JSON.parse(data[1].get('fullData')))
+		res.json(data[0])
+	}
+>>>>>>> c8e7cc1be7755acc858d09490d98d4f65933f27b
 }

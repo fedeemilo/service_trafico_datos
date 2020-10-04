@@ -1,13 +1,12 @@
 const run = require('./select')
 const cache = require('memory-cache')
 
-const fetchData = async () => {
+const fetchData = async (celPhone) => {
 
     let newCache = new cache.Cache()
-    let data = await run()
+    let data = await run(celPhone)
 
     newCache.put('fullData', JSON.stringify(data))
-
     return [data, newCache]
 }
 

@@ -15,6 +15,6 @@ router.get('/', getAllData)
 router.get('/:categoria', getDataByCategory)
 
 // Mostrar datos ingresando un num. de celular             - GET /:numero_cel
-router.get('/:numero_cel', getDataByCelPhone)
+router.get('/cel/:numerocel', getDataByCelPhone)
 
 module.exports = router

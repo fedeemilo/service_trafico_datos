@@ -51,3 +51,10 @@ categoría particular y visualizar el detalle de consumo por dia.
 Ejemplo:
 localhost:4000/comercio_electronico
 ``` 
+
+- GET http://localhost/:numero_cel  ->  obtener datos por celular
+
+```
+Ejemplo:
+localhost:4000/1112233445 (sólo num. Claro)
+```
