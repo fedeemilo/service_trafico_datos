@@ -50,9 +50,7 @@ module.exports = {
 			}
 		}
 		res.json(filteredData)
-    },
-    
-    async getDataByCelPhone(req, res, next) {
-        
-    }
+	},
+
+	async getDataByCelPhone(req, res, next) {},
 }
